@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'back_drop_filter_sample.dart';
+import 'package:flutter_test_app/compass_sample.dart';
 
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
@@ -12,13 +13,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +30,15 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => BackDropFilterSample()),
+                )
+              },
+            ),
+            ElevatedButton(
+              child: Text('Compass'),
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CompassSample()),
                 )
               },
             ),
