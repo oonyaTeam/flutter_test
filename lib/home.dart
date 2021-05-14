@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'back_drop_filter_sample.dart';
 import 'package:flutter_test_app/compass_sample.dart';
 
+import 'geolocator_sample.dart';
+
 class Home extends StatefulWidget {
   Home({Key key, this.title}) : super(key: key);
 
@@ -39,6 +41,15 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => CompassSample()),
+                )
+              },
+            ),
+            ElevatedButton(
+              child: Text('Geolocator'),
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GeolocatorSample()),
                 )
               },
             ),
