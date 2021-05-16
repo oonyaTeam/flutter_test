@@ -8,6 +8,11 @@
     <application
         android:label="flutter_test_app"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/GOOGLE_MAPS_API_KEY" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -32,10 +37,6 @@
               android:name="io.flutter.embedding.android.SplashScreenDrawable"
               android:resource="@drawable/launch_background"
               />
-
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="@string/GOOGLE_MAPS_API_KEY" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

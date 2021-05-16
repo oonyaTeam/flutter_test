@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_app/googlemap_sample.dart';
 
 import 'back_drop_filter_sample.dart';
 import 'package:flutter_test_app/compass_sample.dart';
@@ -50,6 +51,15 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => GeolocatorSample()),
+                )
+              },
+            ),
+            ElevatedButton(
+              child: Text('Google Map'),
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => GoogleMapSample()),
                 )
               },
             ),
