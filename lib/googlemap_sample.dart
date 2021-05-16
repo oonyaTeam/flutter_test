@@ -7,6 +7,13 @@ class GoogleMapSample extends StatefulWidget {
 }
 
 class _GoogleMapSampleState extends State<GoogleMapSample> {
+
+  GoogleMapController _mapController;
+
+  void _onMapCreated (GoogleMapController controller) {
+    _mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +24,12 @@ class _GoogleMapSampleState extends State<GoogleMapSample> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: GoogleMap(
-          onMapCreated: (GoogleMapController controller) {},
+          onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: LatLng(35.6580339,139.7016358),
             zoom: 17.0,
           ),
+          myLocationEnabled: true,
         ),
       ),
     );
