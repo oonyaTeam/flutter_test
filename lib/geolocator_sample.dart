@@ -12,6 +12,8 @@ class GeolocatorSample extends StatefulWidget {
 class _GeolocatorSampleState extends State<GeolocatorSample> {
   String _location = "no data";
 
+  double _heading = 0;
+
   String _compass = "no compass";
 
   Future<void> getLocation() async {
@@ -19,6 +21,7 @@ class _GeolocatorSampleState extends State<GeolocatorSample> {
       desiredAccuracy: LocationAccuracy.high,
     );
     setState(() {
+      _heading = position.heading;
       _location = position.toString();
     });
   }
@@ -41,6 +44,7 @@ class _GeolocatorSampleState extends State<GeolocatorSample> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(_location),
+            Text(_heading.toString()),
             Text(_compass),
             ElevatedButton(
               onPressed: () => getLocation(),
