@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapSample extends StatefulWidget {
@@ -11,26 +11,43 @@ class _GoogleMapSampleState extends State<GoogleMapSample> {
 
   GoogleMapController _mapController;
 
-  // LatLng _currentLatLng;
+  LatLng _currentLatLng;
 
-  void _onMapCreated (GoogleMapController controller) {
+  void _onMapCreated (GoogleMapController controller) async {
+    await _getCurrentLatLng();
     setState(() {
       _mapController = controller;
 
       _mapController.animateCamera(CameraUpdate.newCameraPosition(
-        const CameraPosition(target: LatLng(0, 0))
+        CameraPosition(target: _currentLatLng)
       ));
     });
   }
 
-  // Future<void> _getCurrentLatLng () async {
-  //   Position position = await Geolocator.getCurrentPosition(
-  //     desiredAccuracy: LocationAccuracy.high,
-  //   );
-  //   setState(() {
-  //     _currentLatLng = LatLng(position.latitude, position.longitude);
-  //   });
-  // }
+  Future<void> _getCurrentLatLng () async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    setState(() {
+      _currentLatLng = LatLng(position.latitude, position.longitude);
+    });
+  }
+
+  BitmapDescriptor.
+
+  Set<Marker> _createMarker() {
+    _markerLocations.asMap().forEach((i, markerLocation) {
+      markers.add(
+        Marker(
+          markerId: MarkerId('myMarker{$i}'),
+          position: markerLocation,
+          icon: (pinLocationIcon),
+        ),
+      );
+    });
+
+    return markers;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +65,7 @@ class _GoogleMapSampleState extends State<GoogleMapSample> {
             zoom: 17.0,
           ),
           myLocationEnabled: true,
+          markers: _createMarker(),
         ),
       ),
     );
